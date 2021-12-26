@@ -14,10 +14,10 @@ public class GlobalCatcher {
 		model.addAttribute("ex",ex);
 		return "error";
 	}
-	@ExceptionHandler(Exception.class)
-	public String catcher3(Exception ex, Model model) {
-		model.addAttribute("ex",ex);
-		return "error";
-	}
+//	@ExceptionHandler(Exception.class)
+//	public String catcher3(Exception ex, Model model) {
+//		model.addAttribute("ex",ex);
+//		return "error";
+//	}
 	
 }

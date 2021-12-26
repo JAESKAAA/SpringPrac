@@ -13,7 +13,7 @@
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/**" location="/resources/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -21,8 +21,24 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- xmlns 설정할때 하나만 접두사를 생략할 수 있는데, mvc가 생략되어 있기때문에 mvc 없이 사용 가능한것임!! -->
+	
+	<!-- <view-controller path="/register/add" view-name="registerForm"/> -->
 	<context:component-scan base-package="com.fastcampus.ch2" />
 	
-	
+	<!-- 예외 종류별 매핑을 위한 에러 처리 태그부분 -->
+	<beans:bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<beans:property name="defaultErrorView" value="error" />
+    		<beans:property name="exceptionMappings">
+      			<beans:props>
+        			<beans:prop key="com.fastcampus.ch2.MyException">error400</beans:prop>
+      			</beans:props>
+    		</beans:property>
+		<beans:property name="statusCodes">
+			<beans:props>
+        			<beans:prop key="error400">400</beans:prop>
+			</beans:props>
+		</beans:property>
+  	</beans:bean>	
 	
 </beans:beans>
